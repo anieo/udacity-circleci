@@ -246,7 +246,7 @@ jobs:
               curl https://kvdb.io/${kvdb_io}/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
               echo "MIGRATION WAS SUCCESSFUL"
             fi
-      - destroy-environmen
+      - destroy-environment
       - revert-migrations
 
   # deploy-frontend:
