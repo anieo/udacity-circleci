@@ -1,63 +1,17 @@
 ---
-- name: "update apt packages."
-  become: yes
-  apt:
-    update_cache: yes
-
-- name: "upgrade packages"
-  become: yes
-  apt:
-    upgrade: yes
-
-- name: remove dependencies that are no longer required
-  become: yes
-  apt:
-    autoremove: yes
-
-- name: "install dependencies"
-  become: yes
-  apt:
-    name: ["python3", "tar", "gzip", "git","zip", "unzip"]
-    state: latest
-    update_cache: yes
 - name: install node
   shell: |
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - && sudo apt-get install -y nodejs
-# - name: "install n"
-#   become: true
-#   npm:
-#     name: n
-#     global: yes
-#     production: yes
-# - name: "install nodejs 12.20.1"
-#   become: true
-#   shell: n 12.20.1
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash 
+
+- name: "Install Node.js 13"
+  become: true
+  apt:
+    name: ["nodejs"]
+    state: latest
+    update_cache: yes
+
 - name: "install pm2"
   become: yes
   npm:
     name: pm2
     global: yes
-    production: yes
-    state: present
-- name: "set Enviroment variables"
-  shell: |
-    echo "TYPEORM_CONNECTION=${TYPEORM_CONNECTION}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_ENTITIES=${TYPEORM_ENTITIES}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_HOST=${TYPEORM_HOST}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_PORT=${TYPEORM_PORT}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_USERNAME=${TYPEORM_USERNAME}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_PASSWORD=${TYPEORM_PASSWORD}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_DATABASE=${TYPEORM_DATABASE}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_MIGRATIONS=${TYPEORM_MIGRATIONS}" >> /home/ubuntu/.bashrc
-    echo "TYPEORM_MIGRATIONS_DIR=${TYPEORM_MIGRATIONS_DIR}" >> /home/ubuntu/.bashrc
-- name: "set Enviroment variables"
-  shell: |
-    echo "TYPEORM_CONNECTION=${TYPEORM_CONNECTION}" >> /home/ubuntu/.env
-    echo "TYPEORM_ENTITIES=${TYPEORM_ENTITIES}" >> /home/ubuntu/.env
-    echo "TYPEORM_HOST=${TYPEORM_HOST}" >> /home/ubuntu/.env
-    echo "TYPEORM_PORT=${TYPEORM_PORT}" >> /home/ubuntu/.env
-    echo "TYPEORM_USERNAME=${TYPEORM_USERNAME}" >> /home/ubuntu/.env
-    echo "TYPEORM_PASSWORD=password" >> /home/ubuntu/.env
-    echo "TYPEORM_DATABASE=${TYPEORM_DATABASE}" >> /home/ubuntu/.env
-    echo "TYPEORM_MIGRATIONS=${TYPEORM_MIGRATIONS}" >> /home/ubuntu/.env
-    echo "TYPEORM_MIGRATIONS_DIR=${TYPEORM_MIGRATIONS_DIR}" >> /home/ubuntu/.env
