@@ -1,6 +1,6 @@
 ---
 - name: create backend app directory
-  copy:
+  file:
     path:  ~/backend-app
     state: directory
 
