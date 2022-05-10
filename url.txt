@@ -1,0 +1,14 @@
+# github url
+https://github.com/anieo/udacity-circleci
+
+# S3 URL 
+http://udapeople-4a3c32a.s3-website-us-east-1.amazonaws.com/#/employees
+
+# Cloud Front URL
+http://d2k6jiwgn9ke7e.cloudfront.net/#/employees
+
+# Backend IP
+http://107.21.70.94:3030/api/status
+
+# prometheus
+http://54.226.168.183:9090/graph
